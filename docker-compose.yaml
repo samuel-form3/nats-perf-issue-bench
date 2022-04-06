@@ -2,7 +2,7 @@
 version: '3'
 services:
   n1:
-    image: nats:${NATS_VERSION}-alpine
+    image: ${NATS_IMAGE}
     command: --name N1 --cluster_name JSC --js --sd /data --cluster nats://0.0.0.0:4245 --routes nats://n1:4245,nats://n2:4245,nats://n3:4245 -p 4222
     networks:
     - nats
@@ -12,7 +12,7 @@ services:
     - /tmp/jetstream-cluster/n1:/data
 
   n2:
-    image: nats:${NATS_VERSION}-alpine
+    image: ${NATS_IMAGE}
     command: --name N2 --cluster_name JSC --js --sd /data --cluster nats://0.0.0.0:4245 --routes nats://n1:4245,nats://n2:4245,nats://n3:4245 -p 4222
     networks:
     - nats
@@ -22,7 +22,7 @@ services:
     - /tmp/jetstream-cluster/n2:/data
 
   n3:
-    image: nats:${NATS_VERSION}-alpine
+    image: ${NATS_IMAGE}
     command: --name N3 --cluster_name JSC --js --sd /data --cluster nats://0.0.0.0:4245 --routes nats://n1:4245,nats://n2:4245,nats://n3:4245 -p 4222
     networks:
     - nats
